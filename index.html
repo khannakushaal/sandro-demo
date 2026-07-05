@@ -48,10 +48,11 @@ svg{display:block}
 .seg{margin:0 auto;position:relative;display:flex;background:#eceadf;border-radius:13px;padding:4px}
 .seg .ind{position:absolute;top:4px;bottom:4px;border-radius:10px;background:#fff;box-shadow:var(--shadow);
   transition:left .3s cubic-bezier(.2,.8,.2,1);z-index:0}
-.seg button{position:relative;z-index:1;display:flex;align-items:center;gap:7px;padding:9px 20px;border-radius:10px;
-  font-weight:600;font-size:14px;color:var(--muted);transition:color .2s;white-space:nowrap}
-.seg button.on{color:var(--text)}
+.seg button{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 18px;border-radius:10px;
+  font-weight:600;font-size:14px;color:var(--muted);transition:color .2s,background .2s,box-shadow .2s;white-space:nowrap}
+.seg button.on{color:var(--text);background:#fff;box-shadow:var(--shadow)}
 .lbl-short{display:none}
+.b-gray{background:#eceae2;color:#8a8f86}
 
 /* ---------- phone frame ---------- */
 .stage{display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;
@@ -303,6 +304,7 @@ svg{display:block}
 .ptabs button{padding:7px 13px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted)}
 .ptabs button.on{background:var(--brand-d);color:#fff}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
+.kpis-3{grid-template-columns:repeat(3,1fr)}
 .kpi{background:#fff;border-radius:18px;padding:16px;border:1px solid var(--line2);box-shadow:var(--shadow)}
 .kpi .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;margin-bottom:12px}
 .kpi .v{font-family:'Poppins';font-weight:800;font-size:24px}
@@ -344,6 +346,28 @@ svg{display:block}
 .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 
 /* toasts */
+/* subscription */
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plan-card{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:20px;position:relative;box-shadow:var(--shadow)}
+.plan-card.active{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-t)}
+.plan-card .pt{font-family:'Poppins';font-weight:700;font-size:16px}
+.plan-card .pp{font-family:'Poppins';font-weight:800;font-size:26px;margin:6px 0 2px}
+.plan-card .pp small{font-size:13px;font-weight:600;color:var(--muted)}
+.plan-feat{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:9px 0;color:var(--text)}
+.plan-badge{position:absolute;top:14px;right:14px;font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px}
+.locked-banner{display:flex;align-items:center;gap:12px;background:var(--amber-t);border:1px solid #f0e0c0;border-radius:16px;padding:14px;margin-top:4px}
+/* scope & pricing */
+.scope-doc{width:100%;max-width:1120px;margin:0 auto}
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin-top:18px}
+.phase-card{background:#fff;border:1px solid var(--line2);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.phase-head{padding:18px 20px}
+.phase-card.p1 .phase-head{background:var(--brand-t2);border-bottom:1px solid #e2ecd7}
+.phase-card.p2 .phase-head{background:var(--amber-t);border-bottom:1px solid #f0e0c0}
+.phase-body{padding:6px 20px 18px}
+.scope-group{margin-top:16px}
+.scope-group h4{font-family:'Poppins';font-size:12px;font-weight:700;margin:0 0 8px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+.scope-item{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;padding:5px 0;line-height:1.4}
+.scope-item svg{flex:0 0 auto;margin-top:2px}
 #toasts{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
 .toast{display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:12px;color:#fff;font-size:14px;font-weight:500;
   box-shadow:var(--shadow-lg);animation:tin .25s ease}
@@ -356,13 +380,19 @@ body[data-surface="mobile"] .foot-note{display:none}
 @media(max-width:860px){
   .sidebar.persist{display:none}
   .hamburger{display:grid}
-  .kpis{grid-template-columns:1fr 1fr}
+  .kpis,.kpis-3{grid-template-columns:1fr 1fr}
   .grid-2{grid-template-columns:1fr}
   .grid-half{grid-template-columns:1fr}
-  .staff-grid,.set-grid{grid-template-columns:1fr}
+  .staff-grid,.set-grid,.plan-grid,.scope-grid{grid-template-columns:1fr}
   .drawer{position:fixed;inset:0;z-index:60}
   .drawer .scrim2{position:absolute;inset:0;background:rgba(20,25,18,.5)}
   .drawer .sidebar{position:absolute;left:0;top:0;bottom:0;display:flex}
+}
+@media(max-width:820px){
+  .lbl-full{display:none}.lbl-short{display:inline}
+  .seg button{padding:8px 12px;font-size:13px}
+  .seg{overflow-x:auto;max-width:100%;scrollbar-width:none}
+  .seg::-webkit-scrollbar{display:none}
 }
 @media(min-width:861px){.drawer{display:none}}
 @media(max-width:480px){
@@ -383,6 +413,7 @@ body[data-surface="mobile"] .foot-note{display:none}
   .navbar{padding-bottom:max(14px,env(safe-area-inset-bottom))}
   /* Owner console fills too, scrolling internally */
   .admin-stage{flex:1;min-height:0;padding:0}
+  .scope-doc{padding:12px 12px 24px}
   .console{min-height:0;height:100%;border-radius:0;border:none}
   .cbody{padding:16px}
   .ctopbar{padding:12px 14px;gap:8px}
@@ -396,7 +427,7 @@ body[data-surface="mobile"] .foot-note{display:none}
 <div id="app"></div>
 <div class="foot-note">
   Every control is live, and both surfaces share one dataset. Ring up a sale in the <b>Cashier App</b>, then open the
-  <b>Owner Console</b> to watch revenue, stock and the activity feed update. Change the tax rate or a staff member's
+  <b>Business Owner Console</b> to watch revenue, stock and the activity feed update. Change the tax rate or a staff member's
   permission in the Console and it flows straight into the app. Toggle offline to see sales queue, then sync.
 </div>
 
@@ -428,6 +459,11 @@ const IP = {
   chevron:'<path d="m9 18 6-6-6-6"/>',
   chevronL:'<path d="m15 18-6-6 6-6"/>',
   droplet:'<path d="M12 2.7 6.5 9.2a7 7 0 1 0 11 0Z"/>',
+  crown:'<path d="M11.6 3.5a.5.5 0 0 1 .8 0l3 4.2 4.4-2.9a.5.5 0 0 1 .77.54l-2 9A1 1 0 0 1 17.6 15H6.4a1 1 0 0 1-.98-.66l-2-9a.5.5 0 0 1 .77-.54l4.4 2.9 3-4.2Z"/><path d="M5 19h14"/>',
+  layers:'<path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/>',
+  send:'<path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/>',
+  list:'<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/>',
   dashboard:'<rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/>',
   chart:'<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
   users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>',
@@ -473,7 +509,7 @@ const CAT = {
   Grocery:{icon:'bag', bg:'#e9e6f4', fg:'#6a5bc0'},
   Household:{icon:'droplet', bg:'#e5eef1', fg:'#3a86a8'},
 };
-const PAY = { Cash:{icon:'cash',color:'#3c7d3a'}, Card:{icon:'card',color:'#3667c9'}, UPI:{icon:'phone',color:'#d98a25'} };
+const PAY = { Cash:{icon:'cash',color:'#3c7d3a'}, Card:{icon:'card',color:'#3667c9'} };
 
 var products = [
   {id:1,name:'Cappuccino',cat:'Drinks',price:180,cost:60,stock:40,low:10,bc:'890100011',img:'cappuccino'},
@@ -510,23 +546,61 @@ var staff = [
 var settings = {
   store:'Brew & Co', type:'Cafe', currency:'INR', symbol:'₹', region:'India', taxRate:5,
   rHeader:'Brew & Co', rFooter:'Thanks — see you soon!', autoBackup:true, lastBackup:Date.now()-3600000,
-  plan:'Free', printerSize:'80mm', printerConn:'Bluetooth',
+  plan:'Free', renewsOn:null, card:'•••• 4242', printerSize:'80mm', printerConn:'Bluetooth',
 };
 function seedSales(){
-  const pays=['Cash','Card','UPI'], cash=['Priya Nair','Rohan Das'], out=[]; let n=1001;
+  const pays=['Cash','Card'], cash=['Priya Nair','Rohan Das'], out=[]; let n=1001;
   const now=Date.now(), day=86400000;
-  for(let d=6;d>=0;d--){ const c=1+Math.floor(Math.random()*3);
+  for(let d=20;d>=0;d--){ const c=1+Math.floor(Math.random()*3);
     for(let i=0;i<c;i++){ const items=[]; const k=1+Math.floor(Math.random()*3);
       for(let j=0;j<k;j++){ const p=products[Math.floor(Math.random()*products.length)];
         items.push({id:p.id,name:p.name,qty:1+Math.floor(Math.random()*2),price:p.price,cost:p.cost}); }
       const sub=items.reduce((s,it)=>s+it.qty*it.price,0), tax=Math.round(sub*0.05);
       out.push({id:'S'+(n++),items,sub,discAmt:0,tax,charge:0,total:sub+tax,
-        payment:pays[Math.floor(Math.random()*3)],cashier:cash[Math.floor(Math.random()*2)],
+        payment:pays[Math.floor(Math.random()*pays.length)],cashier:cash[Math.floor(Math.random()*cash.length)],
         ts:now-d*day-Math.floor(Math.random()*day*0.6),synced:true}); }
   }
   return out.sort((a,b)=>b.ts-a.ts);
 }
 var sales = seedSales();
+
+/* =========================== PLATFORM (SUPER ADMIN) DATA =========================== */
+var PLAN_MRR = 749; // ₹/month per Premium business
+var tenants = [
+  {id:'BIZ-1042',name:'FreshMart Grocery',owner:'Neha Gupta',type:'Grocery',city:'Mumbai',plan:'Premium',status:'active',since:Date.now()-124*86400000,gmv:284000,outlets:2,last:'12m ago'},
+  {id:'BIZ-1043',name:'Chai Point Express',owner:'Rohit Mehra',type:'Cafe',city:'Bengaluru',plan:'Premium',status:'active',since:Date.now()-98*86400000,gmv:198500,outlets:1,last:'1h ago'},
+  {id:'BIZ-1044',name:'StyleCut Salon',owner:'Farah Khan',type:'Salon',city:'Delhi',plan:'Free',status:'trial',since:Date.now()-9*86400000,gmv:42000,outlets:1,last:'3h ago'},
+  {id:'BIZ-1045',name:'DailyNeeds Kirana',owner:'Suresh Rao',type:'Grocery',city:'Pune',plan:'Free',status:'active',since:Date.now()-61*86400000,gmv:76000,outlets:1,last:'yesterday'},
+  {id:'BIZ-1046',name:'The Book Nook',owner:'Ananya Sen',type:'Retail',city:'Kolkata',plan:'Premium',status:'active',since:Date.now()-150*86400000,gmv:132000,outlets:1,last:'2h ago'},
+  {id:'BIZ-1047',name:'FitFuel Juice Bar',owner:'Karan Malhotra',type:'Cafe',city:'Hyderabad',plan:'Free',status:'active',since:Date.now()-33*86400000,gmv:58000,outlets:1,last:'5h ago'},
+  {id:'BIZ-1048',name:'Urban Threads',owner:'Priya Verma',type:'Retail',city:'Delhi',plan:'Free',status:'churned',since:Date.now()-210*86400000,gmv:0,outlets:1,last:'21d ago'},
+  {id:'BIZ-1049',name:'Spice Garden',owner:'Imran Ali',type:'Restaurant',city:'Lucknow',plan:'Premium',status:'active',since:Date.now()-72*86400000,gmv:221000,outlets:3,last:'30m ago'},
+];
+const pMoney = n => '₹' + Math.round(n).toLocaleString('en-IN');
+function platformTenants(){
+  const brew={id:'BIZ-1001',name:settings.store,owner:'Aarav Shah',type:settings.type,city:'Delhi',
+    plan:settings.plan,status:'active',since:Date.now()-45*86400000,
+    gmv:sales.reduce((a,s)=>a+s.total,0),outlets:1,last:'now',live:true};
+  return [brew, ...tenants];
+}
+function pMetrics(){
+  const t=platformTenants();
+  const total=t.length, active=t.filter(x=>x.status!=='churned').length;
+  const premium=t.filter(x=>x.plan==='Premium').length, free=total-premium;
+  return {total,active,premium,free,mrr:premium*PLAN_MRR,gmv:t.reduce((a,x)=>a+x.gmv,0),price:PLAN_MRR};
+}
+function mrrTrend(cur){const base=Math.max(PLAN_MRR,Math.round(cur*0.42));const mo=['Feb','Mar','Apr','May','Jun','Jul'];
+  const a=[];for(let i=0;i<6;i++){a.push({day:mo[i],rev:Math.round(base+(cur-base)*(i/5))});}a[5].rev=cur;return a;}
+function subActivity(t){
+  const prem=t.filter(x=>x.plan==='Premium').map((b,i)=>({name:b.name,up:true,when:['2h ago','yesterday','3d ago','5d ago','1w ago'][i]||'1w ago'}));
+  const churn=t.filter(x=>x.status==='churned').map(b=>({name:b.name,up:false,when:'6d ago'}));
+  return [prem[0],prem[1],churn[0],prem[2],prem[3]].filter(Boolean).slice(0,5);
+}
+function statusBadge(s){const m={active:['b-green','Active'],trial:['b-amber','Trial'],churned:['b-gray','Churned']};const x=m[s]||m.active;return `<span class="badge ${x[0]}">${x[1]}</span>`;}
+var broadcasts = [
+  {aud:'All',subject:'Scheduled sync maintenance',msg:'Brief cloud-sync maintenance on Sunday 2:00 AM IST. Offline billing keeps working throughout.',when:'3d ago'},
+  {aud:'Premium',subject:'New: custom date-range reports',msg:'Premium now includes 30-day and custom-range reports with CSV export.',when:'1w ago'},
+];
 
 /* =========================== UI STATE =========================== */
 var S = {
@@ -537,6 +611,7 @@ var S = {
   login:{step:'main',showPw:false},
   online:true, pending:0,
   aPage:'dashboard', period:'7d', modal:null, modalData:{}, drawer:false, aInvQ:'', payFilter:'All',
+  pPage:'overview', pFilter:'All', pQ:'', bizId:null, bAud:'All',
   pay:null, tender:null,
 };
 
@@ -557,6 +632,9 @@ function totals(){
 }
 const cartCount=()=>S.cart.reduce((a,l)=>a+l.qty,0);
 const lowItems=()=>products.filter(p=>p.stock<=p.low);
+const isPremium=()=>settings.plan==='Premium';
+const FREE_DAYS=7;
+const PLAN_PRICE='₹749';
 function thumb(p,sz){sz=sz||44;const src=p&&p.img?PHOTO[p.img]:null;
   if(src)return `<img src="${src}" alt="" style="width:${sz}px;height:${sz}px;border-radius:${Math.round(sz*0.26)}px;object-fit:cover;flex:0 0 auto;background:#f4f1e9">`;
   const c=(p&&CAT[p.cat])||{bg:'#eef0ec',fg:'#8a978c',icon:'package'};
@@ -566,7 +644,7 @@ function thumb(p,sz){sz=sz||44;const src=p&&p.img?PHOTO[p.img]:null;
 function render(){
   document.body.setAttribute('data-surface', S.surface);
   const app=document.getElementById('app');
-  app.innerHTML = topbar() + (S.surface==='mobile'? mobile() : admin());
+  app.innerHTML = topbar() + (S.surface==='mobile'? mobile() : S.surface==='platform'? platform() : S.surface==='scope'? scope() : admin());
   if(S.surface==='mobile'&&S.mScreen==='welcome'){
     requestAnimationFrame(()=>requestAnimationFrame(fitWelcome));
     setTimeout(fitWelcome,120);setTimeout(fitWelcome,380);
@@ -589,14 +667,14 @@ function fitWelcome(){
   inner.style.marginTop=Math.max(0,(avail-used)/2)+'px';
 }
 function topbar(){
-  const m=S.surface==='mobile';
+  const on=s=>S.surface===s?'on':'';
   return `<div class="topbar"><div class="topbar-in">
     <div class="brandmark"><div class="logo">${icon('store',18,'#fff')}</div><span class="name">Counter POS</span>
       <span class="pill">Prototype</span></div>
-    <div class="seg">
-      <div class="ind" style="left:${m?'4px':'50%'};width:calc(50% - 4px)"></div>
-      <button class="${m?'on':''}" onclick="setSurface('mobile')">${icon('phone',16)} <span class="lbl-full">Cashier App</span><span class="lbl-short">Cashier</span></button>
-      <button class="${!m?'on':''}" onclick="setSurface('admin')">${icon('dashboard',16)} <span class="lbl-full">Owner Console</span><span class="lbl-short">Owner</span></button>
+    <div class="seg seg3">
+      <button class="${on('mobile')}" onclick="setSurface('mobile')">${icon('phone',16)} <span class="lbl-full">Cashier App</span><span class="lbl-short">Cashier</span></button>
+      <button class="${on('admin')}" onclick="setSurface('admin')">${icon('dashboard',16)} <span class="lbl-full">Business Owner Console</span><span class="lbl-short">Business</span></button>
+      <button class="${on('platform')}" onclick="setSurface('platform')">${icon('layers',16)} <span class="lbl-full">Platform Admin</span><span class="lbl-short">Platform</span></button>
     </div>
     <div class="tb-spacer" style="width:56px"></div>
   </div></div>`;
@@ -839,16 +917,25 @@ function onInvSearch(v){S.invQ=v;document.getElementById('invList').innerHTML=in
 /* ---------- receipts ---------- */
 function receipts(){
   if(!sales.length)return emptyState('receipt','No sales yet','Completed sales show up here to view and re-share.');
+  const pro=isPremium();
+  let list=sales;
+  if(!pro){const from=Date.now()-FREE_DAYS*86400000; list=sales.filter(s=>s.ts>=from);}
+  const hidden=sales.length-list.length;
   return `<div style="background:var(--bg);min-height:100%">
     <div class="appbar"><h1>Receipts</h1></div>
-    <div class="list">${sales.slice(0,30).map(s=>{const P=PAY[s.payment];
+    <div class="list">${list.slice(0,40).map(s=>{const P=PAY[s.payment];
       return `<button class="lrow" onclick="openSheet('viewReceipt',{id:'${s.id}'})">
         <div class="icontile" style="background:${P.color}1a">${icon(P.icon,19,P.color)}</div>
         <div style="flex:1"><div style="font-weight:600;font-size:14px">${s.id} · ${s.payment}</div>
           <div style="font-size:12px;color:var(--faint)">${s.items.reduce((a,i)=>a+i.qty,0)} items · ${clock(s.ts)} · ${s.cashier.split(' ')[0]}</div></div>
         <div style="text-align:right"><div class="disp tab" style="font-weight:700">${money(s.total)}</div>
           <div style="font-size:11px;font-weight:600;color:${s.synced?'var(--brand)':'var(--amber)'}">${s.synced?'Synced':'Pending'}</div></div>
-      </button>`;}).join('')}</div>
+      </button>`;}).join('')}
+      ${!pro&&hidden>0?`<div class="locked-banner">${icon('lock',20,'#c98416')}
+        <div style="flex:1"><div style="font-weight:600;font-size:14px">${hidden} older receipt${hidden>1?'s':''} hidden</div>
+          <div style="font-size:12px;color:var(--muted)">Free shows the last ${FREE_DAYS} days. Unlock full history with Premium.</div></div>
+        <button class="btn btn-primary" style="padding:9px 12px;font-size:13px" onclick="goBilling()">See plans</button></div>`:''}
+    </div>
   </div>`;}
 
 /* ---------- more ---------- */
@@ -900,14 +987,14 @@ function moreLocked(title,desc){
       <div class="disp" style="font-weight:800;font-size:19px">Locked by owner</div>
       <p style="color:var(--muted);font-size:14px;margin:8px 0 0">${desc}. Your account is set to <b>Billing only</b>, so this is switched off.</p>
       <div style="background:var(--brand-t2);border:1px solid #e2ecd7;border-radius:14px;padding:14px;margin-top:18px;text-align:left;font-size:13px;color:var(--brand-d);line-height:1.5">
-        ${icon('zap',15,'#2f6531')} <b>Try it:</b> switch to <b>Owner Console → Staff</b> and give Priya <b>Full access</b> — this unlocks instantly.
+        ${icon('zap',15,'#2f6531')} <b>Try it:</b> switch to <b>Business Owner Console → Staff</b> and give Priya <b>Full access</b> — this unlocks instantly.
       </div>
     </div>`;}
 function moreReports(){
   const me=staff.find(x=>x.id===S.cashierId);
   if(me.perm!=='full')return moreLocked('Sales reports','See revenue, profit and payment reports');
   const per=S.mRepPeriod||'today';
-  const from=per==='today'?new Date().setHours(0,0,0,0):Date.now()-7*86400000;
+  const from=per==='all'?0:(per==='today'?new Date().setHours(0,0,0,0):Date.now()-7*86400000);
   const f=sales.filter(s=>s.ts>=from);
   const rev=f.reduce((a,x)=>a+x.total,0);
   const units=f.reduce((a,x)=>a+x.items.reduce((b,i)=>b+i.qty,0),0);
@@ -915,7 +1002,8 @@ function moreReports(){
   return `${subHeader('Sales reports')}
     <div style="padding:16px">
       <div style="display:flex;gap:8px;margin-bottom:14px">
-        ${[['today','Today'],['7d','Last 7 days']].map(p=>`<button class="chip ${per===p[0]?'on':'off'}" onclick="S.mRepPeriod='${p[0]}';render()">${p[1]}</button>`).join('')}
+        ${[['today','Today'],['7d','7 days'],['all','All time']].map(p=>{const locked=!isPremium()&&p[0]==='all';
+          return `<button class="chip ${per===p[0]?'on':'off'}" onclick="${locked?`toast('Premium unlocks full history — upgrade in Business Owner Console','warn')`:`S.mRepPeriod='${p[0]}';render()`}">${p[1]}${locked?' '+icon('lock',11,'#c98416'):''}</button>`;}).join('')}
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
         ${mKpi('Revenue',money(rev),'trend')}${mKpi('Transactions',f.length,'receipt')}
@@ -941,7 +1029,7 @@ function moreSettings(){
       </div>
       <div class="sfield"><label>Receipt header</label><input id="ms_rh" class="inp" value="${esc(settings.rHeader)}"></div>
       <div class="sfield"><label>Receipt footer</label><input id="ms_rf" class="inp" value="${esc(settings.rFooter)}"></div>
-      <p style="font-size:12px;color:var(--faint);margin:4px 0 14px;line-height:1.5">Changes apply at checkout and show up in the Owner Console too.</p>
+      <p style="font-size:12px;color:var(--faint);margin:4px 0 14px;line-height:1.5">Changes apply at checkout and show up in the Business Owner Console too.</p>
       <button class="btn btn-primary" onclick="saveMobileSettings()">Save changes</button>
     </div>`;}
 function saveMobileSettings(){
@@ -1043,7 +1131,7 @@ function paymentSheet(){const t=totals();
   return sheetHead('Take payment')+`<div class="sheet-body">
     <div style="text-align:center;margin-bottom:16px"><div style="font-size:13px;color:var(--faint)">Amount due</div>
       <div class="disp tab" style="font-weight:800;font-size:30px">${money(t.total)}</div></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
       ${Object.keys(PAY).map(k=>`<button class="pay-opt ${S.pay===k?'on':''}" onclick="S.pay='${k}';render()">
         ${icon(PAY[k].icon,22,S.pay===k?'#3c7d3a':PAY[k].color)}
         <span style="font-size:13px;font-weight:600;color:${S.pay===k?'var(--brand-d)':'var(--muted)'}">${k}</span></button>`).join('')}</div>
@@ -1160,15 +1248,15 @@ function admin(){
     ${S.drawer?`<div class="drawer"><div class="scrim2" onclick="S.drawer=false;render()"></div>${sidebar(false)}</div>`:''}
     <div class="content">
       ${ctopbar()}
-      <div class="cbody">${S.aPage==='dashboard'?dashboard():S.aPage==='inventory'?adminInv():S.aPage==='reports'?reports():S.aPage==='staff'?adminStaff():adminSettings()}</div>
+      <div class="cbody">${S.aPage==='dashboard'?dashboard():S.aPage==='inventory'?adminInv():S.aPage==='reports'?reports():S.aPage==='billing'?billing():S.aPage==='staff'?adminStaff():adminSettings()}</div>
     </div>
   </div></div>`;}
 function sidebar(persist){
-  const nav=[['dashboard','Dashboard','dashboard'],['inventory','Inventory','package'],['reports','Sales & Reports','chart'],['staff','Staff','users'],['settings','Settings','settings']];
+  const nav=[['dashboard','Dashboard','dashboard'],['inventory','Inventory','package'],['reports','Sales & Reports','chart'],['billing','Subscription','crown'],['staff','Staff','users'],['settings','Settings','settings']];
   const low=lowItems().length;
   return `<aside class="sidebar ${persist?'persist':''}">
     <div class="sb-brand"><div class="lg">${icon('store',19,'#fff')}</div>
-      <div><div class="nm">Counter POS</div><div class="rl">Owner Console</div></div></div>
+      <div><div class="nm">Counter POS</div><div class="rl">Business Owner Console</div></div></div>
     <nav class="sb-nav">${nav.map(n=>`<button class="sb-link ${S.aPage===n[0]?'on':''}" onclick="goPage('${n[0]}')">
       ${icon(n[2],18)} ${n[1]}${n[0]==='inventory'&&low?`<span class="sbadge">${low}</span>`:''}</button>`).join('')}</nav>
     <div class="sb-foot"><div class="av">A</div>
@@ -1176,8 +1264,14 @@ function sidebar(persist){
         <div style="font-size:11px;color:rgba(255,255,255,.45)">Owner · ${settings.plan} plan</div></div></div>
   </aside>`;}
 function goPage(p){S.aPage=p;S.drawer=false;render();}
+function setPeriod(p){S.period=p;render();}
+function upsell(f){S.surface='admin';S.aPage='billing';S.drawer=false;toast('Upgrade to unlock '+f);render();}
+function goBilling(){S.surface='admin';S.aPage='billing';S.drawer=false;render();}
+function setPlan(p){settings.plan=p;settings.renewsOn=p==='Premium'?Date.now()+30*86400000:null;toast(p==='Premium'?'Premium activated':'Switched to Free plan');render();}
+function doUpgrade(){settings.plan='Premium';settings.renewsOn=Date.now()+30*86400000;closeModal();toast('Welcome to Premium 🎉');render();}
+function cancelSub(){settings.plan='Free';settings.renewsOn=null;toast('Subscription cancelled — on Free now');render();}
 function ctopbar(){
-  const titles={dashboard:'Dashboard',inventory:'Inventory',reports:'Sales & Reports',staff:'Staff',settings:'Settings'};
+  const titles={dashboard:'Dashboard',inventory:'Inventory',reports:'Sales & Reports',billing:'Subscription',staff:'Staff',settings:'Settings'};
   const low=lowItems().length;
   return `<header class="ctopbar">
     <button class="hamburger" onclick="S.drawer=true;render()">${icon('menu',18)}</button>
@@ -1187,7 +1281,11 @@ function ctopbar(){
       <button class="icon-btn" onclick="toast('No new alerts')">${icon('bell',17,'#6c7970')}${low?'<span style="position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:99px;background:var(--rose)"></span>':''}</button>
     </div></header>`;}
 
-function periodTabs(){return `<div class="ptabs">${[['today','Today'],['7d','7 days'],['30d','30 days']].map(p=>`<button class="${S.period===p[0]?'on':''}" onclick="S.period='${p[0]}';render()">${p[1]}</button>`).join('')}</div>`;}
+function periodTabs(){const pro=isPremium();
+  return `<div class="ptabs">${[['today','Today'],['7d','7 days'],['30d','30 days']].map(p=>{
+    const locked=!pro&&p[0]==='30d';
+    return `<button class="${S.period===p[0]?'on':''}" onclick="${locked?`upsell('30-day reports')`:`setPeriod('${p[0]}')`}">${p[1]}${locked?' '+icon('lock',12,'#c98416'):''}</button>`;
+  }).join('')}</div>`;}
 function periodSales(){const from=S.period==='today'?new Date().setHours(0,0,0,0):S.period==='7d'?Date.now()-7*86400000:Date.now()-30*86400000;return sales.filter(s=>s.ts>=from);}
 
 function kpi(label,val,ic,tint,sub){
@@ -1283,8 +1381,8 @@ function reports(){
   const rows=f.filter(x=>S.payFilter==='All'||x.payment===S.payFilter);
   return `<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px">
       <p style="color:var(--muted);font-size:14px;margin:0">Revenue, profit and payment mix — filtered by date.</p>
-      <div style="display:flex;gap:8px"><button class="btn btn-ghost" style="padding:8px 12px;font-size:13px" onclick="toast('Report exported as CSV')">${icon('download',15,'#6c7970')} Export</button>${periodTabs()}</div></div>
-    <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
+      <div style="display:flex;gap:8px"><button class="btn btn-ghost" style="padding:8px 12px;font-size:13px" onclick="${isPremium()?`toast('Report exported as CSV')`:`upsell('CSV export')`}">${icon(isPremium()?'download':'lock',15,'#6c7970')} Export</button>${periodTabs()}</div></div>
+    <div class="kpis kpis-3">
       ${kpi('Revenue',money(rev),'trend','green',S.period==='today'?'today':S.period)}
       ${kpi('Gross profit',money(profit),'wallet','blue','revenue − cost')}
       ${kpi('Avg. sale',money(avg),'receipt','violet',f.length+' orders')}</div>
@@ -1293,7 +1391,7 @@ function reports(){
         return `<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="display:flex;align-items:center;gap:8px;font-weight:500">${icon(PAY[k].icon,15,PAY[k].color)} ${k}</span><span class="tab" style="color:var(--muted)">${money(v)} · ${pct.toFixed(0)}%</span></div><div class="bar-track" style="height:10px"><div class="bar-fill" style="width:${pct}%;background:${PAY[k].color}"></div></div></div>`;}).join('')}</div>
     <div class="card" style="padding:0;overflow:hidden">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line2)"><h3 style="margin:0">Transactions</h3>
-        <div style="display:flex;gap:4px">${['All','Cash','Card','UPI'].map(p=>`<button class="ptabs" style="padding:5px 11px;border-radius:8px;font-size:12px;font-weight:600;background:${S.payFilter===p?'var(--brand-d)':'transparent'};color:${S.payFilter===p?'#fff':'var(--muted)'}" onclick="S.payFilter='${p}';render()">${p}</button>`).join('')}</div></div>
+        <div style="display:flex;gap:4px">${['All','Cash','Card'].map(p=>`<button class="ptabs" style="padding:5px 11px;border-radius:8px;font-size:12px;font-weight:600;background:${S.payFilter===p?'var(--brand-d)':'transparent'};color:${S.payFilter===p?'#fff':'var(--muted)'}" onclick="S.payFilter='${p}';render()">${p}</button>`).join('')}</div></div>
       <div style="overflow-x:auto;max-height:340px;overflow-y:auto"><table class="tbl">
         <thead><tr><th>ID</th><th>Time</th><th class="num">Items</th><th>Cashier</th><th>Payment</th><th class="num">Total</th></tr></thead>
         <tbody>${rows.slice(0,40).map(x=>`<tr><td style="font-weight:500">${x.id}</td>
@@ -1343,9 +1441,9 @@ function adminSettings(){
             <div style="font-size:12px;color:var(--brand)">Auto-backup ${settings.autoBackup?'on':'off'} · encrypted</div></div>
           <button class="toggle ${settings.autoBackup?'on':'off'}" onclick="settings.autoBackup=!settings.autoBackup;render()"><i></i></button></div>
         <button class="btn btn-dark" onclick="backupNow()">${icon('refresh',16,'#fff')} Back up now</button></div>
-      <div class="card"><div style="display:flex;align-items:center;justify-content:space-between">
-        <div><h3 style="margin:0">Plan</h3><p style="font-size:12px;color:var(--faint);margin:4px 0 0">You're on the ${settings.plan} plan.</p></div>
-        <button class="btn" style="background:linear-gradient(90deg,#3c7d3a,#5aa356);color:#fff;padding:9px 14px;font-size:14px" onclick="togglePlan()">${icon('zap',15,'#fff')} ${settings.plan==='Free'?'Upgrade':'Downgrade'}</button></div></div>
+      <div class="card"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <div><h3 style="margin:0">Subscription</h3><p style="font-size:12px;color:var(--faint);margin:4px 0 0">${isPremium()?'Premium — full history & reports':'Free — last '+FREE_DAYS+' days of history'}</p></div>
+        <button class="btn" style="background:linear-gradient(90deg,#3c7d3a,#5aa356);color:#fff;padding:9px 14px;font-size:14px" onclick="goPage('billing')">${icon('crown',15,'#fff')} Manage plan</button></div></div>
     </div></div>`;}
 function saveSettings(){
   const g=x=>document.getElementById(x);
@@ -1360,9 +1458,281 @@ function saveSettings(){
   if(S._psize)settings.printerSize=S._psize;
   toast('Settings saved — applied to the app');render();}
 function backupNow(){settings.lastBackup=Date.now();toast('Backup complete');render();}
-function togglePlan(){const was=settings.plan;settings.plan=was==='Free'?'Premium':'Free';toast(was==='Free'?'Upgraded to Premium':'Switched to Free');render();}
+function togglePlan(){const was=settings.plan;settings.plan=was==='Free'?'Premium':'Free';settings.renewsOn=settings.plan==='Premium'?Date.now()+30*86400000:null;toast(was==='Free'?'Upgraded to Premium':'Switched to Free');render();}
+
+/* =========================== PLATFORM SURFACE =========================== */
+function goP(p){S.pPage=p;S.drawer=false;render();}
+function platform(){
+  return `<div class="admin-stage"><div class="console">
+    ${platformSidebar(true)}
+    ${S.drawer?`<div class="drawer"><div class="scrim2" onclick="S.drawer=false;render()"></div>${platformSidebar(false)}</div>`:''}
+    <div class="content">
+      ${pTopbar()}
+      <div class="cbody">${S.pPage==='businesses'?pBusinesses():S.pPage==='revenue'?pRevenue():S.pPage==='analytics'?pAnalytics():S.pPage==='broadcast'?pBroadcast():S.pPage==='settings'?pSettings():pOverview()}</div>
+    </div>
+  </div></div>` + modalHost();}
+function platformSidebar(persist){
+  const nav=[['overview','Overview','dashboard'],['businesses','Businesses','store'],['revenue','Revenue','trend'],['analytics','Analytics','chart'],['broadcast','Broadcast','send'],['settings','Settings','settings']];
+  return `<aside class="sidebar ${persist?'persist':''}" style="background:#243027">
+    <div class="sb-brand"><div class="lg">${icon('layers',19,'#fff')}</div>
+      <div><div class="nm">Counter POS</div><div class="rl">Platform Admin</div></div></div>
+    <nav class="sb-nav">${nav.map(n=>`<button class="sb-link ${S.pPage===n[0]?'on':''}" onclick="goP('${n[0]}')">${icon(n[2],18)} ${n[1]}</button>`).join('')}</nav>
+    <div class="sb-foot"><div class="av">S</div>
+      <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600">Super Admin</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45)">Platform owner</div></div></div>
+  </aside>`;}
+function pTopbar(){
+  const titles={overview:'Platform overview',businesses:'Businesses',revenue:'Revenue & subscriptions',analytics:'Analytics',broadcast:'Broadcast',settings:'Platform settings'};
+  const n=platformTenants().length;
+  return `<header class="ctopbar">
+    <button class="hamburger" onclick="S.drawer=true;render()">${icon('menu',18)}</button>
+    <h1>${titles[S.pPage]}</h1>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <span class="online-chip on">${icon('layers',14,'#2f6531')} ${n} businesses</span></div></header>`;}
+function pOverview(){
+  const m=pMetrics(), t=platformTenants();
+  const premPct=m.total?Math.round(m.premium/m.total*100):0;
+  const stops=`var(--brand) 0 ${premPct}%, #d9d5c8 ${premPct}% 100%`;
+  const trend=mrrTrend(m.mrr);
+  const topBiz=[...t].sort((a,b)=>b.gmv-a.gmv).slice(0,5); const maxG=Math.max(1,...topBiz.map(b=>b.gmv));
+  const recent=[...t].sort((a,b)=>b.since-a.since).slice(0,5);
+  return `<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+      <p style="color:var(--muted);font-size:14px;margin:0;flex:1;min-width:220px">Every business on Counter POS and the recurring revenue they generate. <b>${settings.store}</b> is your live demo store — change its plan in the Business Owner Console and it updates here.</p>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost" style="padding:9px 13px;font-size:13px" onclick="goP('broadcast')">${icon('send',15,'#6c7970')} Broadcast</button>
+        <button class="btn btn-primary" style="padding:9px 13px;font-size:13px" onclick="openModal('addBiz')">${icon('plus',15,'#fff')} Add business</button>
+      </div></div>
+    <div class="kpis">
+      ${kpi('Businesses',m.total,'store','blue',m.active+' active')}
+      ${kpi('Premium subscribers',m.premium,'crown','green',premPct+'% of base')}
+      ${kpi('MRR',pMoney(m.mrr),'trend','violet','recurring / month')}
+      ${kpi('GMV processed',pMoney(m.gmv),'wallet','amber','across all stores')}
+    </div>
+    <div class="grid-2">
+      <div class="card"><h3>MRR · last 6 months</h3>${areaChart(trend)}</div>
+      <div class="card"><h3>Plan mix</h3>
+        <div class="donut" style="background:conic-gradient(${stops})"><div class="hole"></div></div>
+        <div style="margin-top:14px">
+          <div class="legend"><span class="sw" style="background:var(--brand)"></span><span style="flex:1;color:var(--muted)">Premium</span><b>${m.premium}</b></div>
+          <div class="legend"><span class="sw" style="background:#d9d5c8"></span><span style="flex:1;color:var(--muted)">Free</span><b>${m.free}</b></div>
+        </div></div>
+    </div>
+    <div class="grid-half">
+      <div class="card"><h3>Top businesses by GMV</h3>
+        ${topBiz.map(b=>`<div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:500">${b.name}${b.live?' <span class="badge b-green">Live</span>':''}</span><span class="tab" style="color:var(--muted)">${pMoney(b.gmv)}</span></div><div class="bar-track"><div class="bar-fill" style="width:${b.gmv/maxG*100}%"></div></div></div>`).join('')}</div>
+      <div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><h3 style="margin:0">Recent signups</h3><button class="link" style="font-size:13px" onclick="goP('businesses')">All →</button></div>
+        ${recent.map(b=>`<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line2)">
+          <div class="avatar" style="width:34px;height:34px;font-size:14px">${b.name[0]}</div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:500">${b.name}</div><div style="font-size:12px;color:var(--faint)">${b.type} · ${b.city}</div></div>
+          <span class="mini-tag" style="background:${b.plan==='Premium'?'var(--brand-t)':'#eceae2'};color:${b.plan==='Premium'?'var(--brand-d)':'#8a8f86'}">${b.plan}</span></div>`).join('')}</div>
+    </div>`;}
+function pBusinesses(){
+  const t=platformTenants(), f=S.pFilter||'All', q=(S.pQ||'').toLowerCase();
+  const list=t.filter(x=> (f==='All'||x.plan===f||x.status===f.toLowerCase()) && (x.name+' '+x.owner+' '+x.city).toLowerCase().includes(q));
+  return `<div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
+      <div class="searchbar" style="flex:1;min-width:200px;background:#fff;border:1px solid var(--line)">${icon('search',16,'#9aa69d')}<input value="${esc(S.pQ)}" placeholder="Search businesses" oninput="onPSearch(this.value)"></div>
+      <button class="btn btn-primary" style="padding:9px 14px;font-size:14px" onclick="openModal('addBiz')">${icon('plus',16,'#fff')} Add business</button>
+    </div>
+    <div style="margin-bottom:16px"><div class="ptabs" style="display:inline-flex;flex-wrap:wrap">${['All','Premium','Free','Trial','Churned'].map(x=>`<button class="${f===x?'on':''}" onclick="S.pFilter='${x}';render()">${x}</button>`).join('')}</div></div>
+    <div class="card" style="padding:0;overflow:hidden"><div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Business</th><th>Owner</th><th>Type · City</th><th>Plan</th><th class="num">GMV</th><th>Status</th><th>Last active</th><th></th></tr></thead>
+      <tbody id="pTbody">${pBizRows(list)}</tbody></table></div></div>`;}
+function pBizRows(list){
+  if(!list.length)return `<tr><td colspan="8" style="text-align:center;color:var(--faint);padding:24px">No businesses match.</td></tr>`;
+  return list.map(b=>`<tr onclick="openBiz('${b.id}')" style="cursor:pointer${b.live?';background:#f1f6ea':''}">
+    <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:13px">${b.name[0]}</div>
+      <div><div style="font-weight:600">${b.name}${b.live?' <span class="badge b-green">Live</span>':''}</div><div style="font-size:11px;color:var(--faint)">${b.id}</div></div></div></td>
+    <td style="color:var(--muted)">${b.owner}</td>
+    <td style="color:var(--muted)">${b.type} · ${b.city}</td>
+    <td><span class="mini-tag" style="background:${b.plan==='Premium'?'var(--brand-t)':'#eceae2'};color:${b.plan==='Premium'?'var(--brand-d)':'#8a8f86'}">${b.plan}</span></td>
+    <td class="num" style="font-weight:600">${pMoney(b.gmv)}</td>
+    <td>${statusBadge(b.status)}</td>
+    <td style="color:var(--faint)">${b.last}</td>
+    <td class="num"><button class="icon-btn" style="width:32px;height:32px" onclick="event.stopPropagation();openBiz('${b.id}')">${icon('chevron',14,'#6c7970')}</button></td>
+  </tr>`).join('');}
+function onPSearch(v){S.pQ=v;const t=platformTenants(),f=S.pFilter||'All',q=v.toLowerCase();
+  const list=t.filter(x=>(f==='All'||x.plan===f||x.status===f.toLowerCase())&&(x.name+' '+x.owner+' '+x.city).toLowerCase().includes(q));
+  document.getElementById('pTbody').innerHTML=pBizRows(list);}
+function pRevenue(){
+  const m=pMetrics(), t=platformTenants();
+  const arpu=m.active?m.mrr/m.active:0;
+  const churn=Math.round(t.filter(x=>x.status==='churned').length/Math.max(1,t.length)*100);
+  return `<p style="color:var(--muted);font-size:14px;margin:0 0 18px">Subscription revenue across all businesses. Every Premium store contributes ${pMoney(m.price)}/month.</p>
+    <div class="kpis">
+      ${kpi('MRR',pMoney(m.mrr),'trend','green',m.premium+' × '+pMoney(m.price))}
+      ${kpi('ARR (annualised)',pMoney(m.mrr*12),'wallet','blue','projected')}
+      ${kpi('ARPU',pMoney(Math.round(arpu)),'users','violet','per active business')}
+      ${kpi('Churn',churn+'%','alert','amber','of businesses')}
+    </div>
+    <div class="card" style="margin-bottom:16px"><h3>MRR trend · last 6 months</h3>${areaChart(mrrTrend(m.mrr))}</div>
+    <div class="card"><h3>Recent subscription activity</h3>
+      ${subActivity(t).map(a=>`<div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line2);font-size:13px">
+        <span class="icontile" style="width:30px;height:30px;background:${a.up?'var(--brand-t)':'var(--rose-t)'}">${icon(a.up?'trend':'x',14,a.up?'#2f6531':'#cf4d47')}</span>
+        <span style="flex:1"><b>${a.name}</b> ${a.up?'upgraded to Premium':'cancelled Premium'}</span>
+        <span class="tab" style="font-weight:600;color:${a.up?'var(--brand)':'var(--rose)'}">${a.up?'+':'−'}${pMoney(m.price)}</span>
+        <span style="color:var(--faint);width:74px;text-align:right">${a.when}</span></div>`).join('')}</div>`;}
+function pAnalytics(){
+  const t=platformTenants();
+  const grp=key=>{const m={};t.forEach(x=>{m[x[key]]=(m[x[key]]||0)+1;});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};
+  const cities=grp('city'), types=grp('type');
+  const maxC=Math.max(1,...cities.map(c=>c[1])), maxT=Math.max(1,...types.map(c=>c[1]));
+  const bar=(l,v,mx)=>`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:500">${l}</span><span class="tab" style="color:var(--muted)">${v}</span></div><div class="bar-track"><div class="bar-fill" style="width:${v/mx*100}%"></div></div></div>`;
+  const now=new Date(), months=[];
+  for(let i=5;i>=0;i--)months.push(new Date(now.getFullYear(),now.getMonth()-i,1));
+  let cum=t.filter(x=>x.since<months[0].getTime()).length;
+  const cumData=months.map(d=>{const s=d.getTime(),e=new Date(d.getFullYear(),d.getMonth()+1,1).getTime();cum+=t.filter(x=>x.since>=s&&x.since<e).length;return {day:d.toLocaleDateString('en-IN',{month:'short'}),rev:cum};});
+  const prem=t.filter(x=>x.plan==='Premium').length,free=t.filter(x=>x.plan==='Free'&&x.status==='active').length,trial=t.filter(x=>x.status==='trial').length,churn=t.filter(x=>x.status==='churned').length;
+  const maxP=Math.max(1,prem,free,trial,churn);
+  return `<p style="color:var(--muted);font-size:14px;margin:0 0 18px">Where your businesses are, what they sell, and how the base is growing.</p>
+    <div class="grid-2">
+      <div class="card"><h3>Total businesses over time</h3>${areaChart(cumData)}</div>
+      <div class="card"><h3>By plan &amp; status</h3>
+        ${bar('Premium',prem,maxP)}${bar('Free (active)',free,maxP)}${bar('On trial',trial,maxP)}${bar('Churned',churn,maxP)}</div>
+    </div>
+    <div class="grid-half">
+      <div class="card"><h3>By city</h3>${cities.map(c=>bar(c[0],c[1],maxC)).join('')}</div>
+      <div class="card"><h3>By business type</h3>${types.map(c=>bar(c[0],c[1],maxT)).join('')}</div>
+    </div>`;}
+function pBroadcast(){
+  const aud=S.bAud||'All';
+  return `<p style="color:var(--muted);font-size:14px;margin:0 0 18px">Send an announcement to businesses on the platform — new features, maintenance windows, offers.</p>
+    <div class="grid-2">
+    <div class="card"><h3>New announcement</h3>
+      <div class="sfield"><label>Audience</label><div class="seg-mini">${['All','Premium','Free'].map(a=>`<button class="${aud===a?'on':''}" onclick="S.bAud='${a}';render()">${a}</button>`).join('')}</div></div>
+      <div class="sfield"><label>Subject</label><input id="bc_subject" class="inp" placeholder="e.g. New feature available"></div>
+      <div class="sfield"><label>Message</label><textarea id="bc_msg" class="inp" rows="4" style="resize:vertical;width:100%" placeholder="Write your announcement…"></textarea></div>
+      <button class="btn btn-primary" onclick="sendBroadcast()">${icon('send',16,'#fff')} Send to ${aud==='All'?'all':aud} businesses</button></div>
+    <div class="card"><h3>Sent announcements</h3>
+      ${broadcasts.map(b=>`<div style="padding:11px 0;border-bottom:1px solid var(--line2)">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-weight:600;font-size:14px">${b.subject}</span><span class="mini-tag" style="background:var(--brand-t);color:var(--brand-d)">${b.aud}</span></div>
+        <div style="font-size:13px;color:var(--muted);margin:3px 0">${b.msg}</div>
+        <div style="font-size:11px;color:var(--faint)">${b.when}</div></div>`).join('')}</div>
+    </div>`;}
+function pSettings(){
+  const feats=['Full sales history from day one','30-day & custom-range reports','CSV & data export','Advanced profit insights','Priority real-time sync','Multi-outlet management'];
+  return `<p style="color:var(--muted);font-size:14px;margin:0 0 18px">Platform-wide plan configuration. Changes here affect every business.</p>
+    <div class="set-grid">
+    <div class="card"><h3>Plan pricing</h3>
+      <div class="sfield"><label>Premium price (₹ / month)</label><input id="ps_price" class="inp tab" value="${PLAN_MRR}" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')"></div>
+      <div class="sfield"><label>Free trial length (days)</label><input id="ps_trial" class="inp tab" value="14" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')"></div>
+      <div class="sfield"><label>Free-plan history window (days)</label><input class="inp tab" value="${FREE_DAYS}" disabled style="opacity:.6"></div>
+      <p style="font-size:12px;color:var(--faint);margin:0 0 12px">Changing the price recalculates platform MRR across all ${pMetrics().premium} Premium businesses.</p>
+      <button class="btn btn-primary" onclick="savePlatformSettings()">Save pricing</button></div>
+    <div class="card"><h3>What Premium unlocks</h3>
+      ${feats.map(f=>`<div class="plan-feat">${icon('check',15,'#3c7d3a')}<span>${f}</span></div>`).join('')}
+      <p style="font-size:12px;color:var(--faint);margin-top:12px">These features are gated on the Free plan and unlocked for Premium businesses across the platform.</p></div>
+    </div>`;}
+/* platform actions */
+function tenantById(id){return platformTenants().find(t=>t.id===id);}
+function openBiz(id){S.modal='bizDetail';S.bizId=id;render();}
+function setTenantPlan(id,plan){
+  if(id==='BIZ-1001'){settings.plan=plan;settings.renewsOn=plan==='Premium'?Date.now()+30*86400000:null;}
+  else{const t=tenants.find(x=>x.id===id);if(t)t.plan=plan;}
+  toast('Plan set to '+plan);render();}
+function toggleSuspend(id){
+  if(id==='BIZ-1001'){toast('Your live demo store can’t be suspended','warn');return;}
+  const t=tenants.find(x=>x.id===id);if(!t)return;
+  t.status=t.status==='churned'?'active':'churned';
+  toast(t.status==='churned'?t.name+' suspended':t.name+' reactivated');render();}
+function addBiz(){
+  const g=x=>document.getElementById(x)?document.getElementById(x).value:'';
+  const name=g('nb_name');if(!name){toast('Add a business name','warn');return;}
+  tenants.unshift({id:'BIZ-'+(1050+tenants.length),name,owner:g('nb_owner')||'—',type:g('nb_type')||'Retail',city:g('nb_city')||'—',
+    plan:S._nbPlan||'Free',status:'trial',since:Date.now(),gmv:0,outlets:1,last:'just now'});
+  S._nbPlan=null;closeModal();toast(name+' added to the platform');}
+function sendBroadcast(){
+  const g=x=>document.getElementById(x)?document.getElementById(x).value:'';
+  const subject=g('bc_subject');if(!subject){toast('Add a subject','warn');return;}
+  broadcasts.unshift({aud:S.bAud||'All',subject,msg:g('bc_msg')||'',when:'just now'});
+  toast('Announcement sent to '+(S.bAud||'All')+' businesses');render();}
+function savePlatformSettings(){
+  const v=parseInt((document.getElementById('ps_price')||{}).value);if(v)PLAN_MRR=v;
+  toast('Saved — platform MRR recalculated');render();}
+function bizDetailModal(){
+  const b=tenantById(S.bizId);if(!b)return '<div class="modal-head"><h2>Not found</h2><button class="x-btn" onclick="closeModal()">'+icon('x',17,'#6c7970')+'</button></div>';
+  const pro=b.plan==='Premium';
+  const cell=(l,v)=>`<div style="background:var(--bg);border:1px solid var(--line2);border-radius:12px;padding:10px 12px"><div style="font-size:11px;color:var(--faint)">${l}</div><div style="font-weight:600;font-size:14px" class="tab">${v}</div></div>`;
+  return `<div class="modal-head"><h2>${b.name}</h2><button class="x-btn" onclick="closeModal()">${icon('x',17,'#6c7970')}</button></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+      <div class="avatar">${b.name[0]}</div>
+      <div style="flex:1"><div style="font-size:13px;color:var(--faint)">${b.id} · ${b.owner}</div>
+        <div style="display:flex;gap:6px;margin-top:5px;flex-wrap:wrap">${statusBadge(b.status)}<span class="mini-tag" style="background:${pro?'var(--brand-t)':'#eceae2'};color:${pro?'var(--brand-d)':'#8a8f86'}">${b.plan}</span>${b.live?'<span class="badge b-green">Live</span>':''}</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+      ${cell('Type',b.type)}${cell('City',b.city)}${cell('Outlets',b.outlets)}
+      ${cell('GMV',pMoney(b.gmv))}${cell('Since',new Date(b.since).toLocaleDateString('en-IN',{month:'short',year:'numeric'}))}${cell('Last active',b.last)}
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      ${pro?`<button class="btn btn-ghost" style="flex:1;min-width:140px" onclick="setTenantPlan('${b.id}','Free')">${icon('crown',15,'#6c7970')} Downgrade to Free</button>`
+           :`<button class="btn btn-primary" style="flex:1;min-width:140px" onclick="setTenantPlan('${b.id}','Premium')">${icon('crown',15,'#fff')} Upgrade to Premium</button>`}
+      <button class="btn btn-ghost" style="flex:1;min-width:140px" onclick="toggleSuspend('${b.id}')">${icon(b.status==='churned'?'refresh':'alert',15,'#6c7970')} ${b.status==='churned'?'Reactivate':'Suspend'}</button>
+      ${b.live?`<button class="btn btn-dark" style="flex:1;min-width:140px" onclick="closeModal();setSurface('admin')">${icon('layers',15,'#fff')} Open console</button>`
+             :`<button class="btn btn-ghost" style="flex:1;min-width:140px" onclick="toast('Message sent to '+'${b.owner}'.split(' ')[0])">${icon('send',15,'#6c7970')} Message owner</button>`}
+    </div>`;}
+function addBizModal(){
+  const plan=S._nbPlan||'Free';
+  return `<div class="modal-head"><h2>Add a business</h2><button class="x-btn" onclick="closeModal()">${icon('x',17,'#6c7970')}</button></div>
+    <div class="sfield"><label>Business name</label><input id="nb_name" class="inp" placeholder="e.g. Sunrise Bakery"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="sfield"><label>Owner</label><input id="nb_owner" class="inp" placeholder="Full name"></div>
+      <div class="sfield"><label>City</label><input id="nb_city" class="inp" placeholder="City"></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="sfield"><label>Type</label><select id="nb_type" class="inp">${['Cafe','Restaurant','Grocery','Retail','Salon','Service'].map(t=>`<option>${t}</option>`).join('')}</select></div>
+      <div class="sfield"><label>Starting plan</label><div class="seg-mini">${['Free','Premium'].map(p=>`<button class="${plan===p?'on':''}" onclick="S._nbPlan='${p}';render()">${p}</button>`).join('')}</div></div></div>
+    <button class="btn btn-primary" onclick="addBiz()">Add business</button>`;}
 
 /* ---------- admin modals ---------- */
+function billing(){
+  const pro=isPremium();
+  const chk=t=>`<div class="plan-feat">${icon('check',15,'#3c7d3a')}<span>${t}</span></div>`;
+  const free=['Unlimited billing & receipts','Inventory management','Staff roles & permissions','Reports — last 7 days only','Basic cloud backup'];
+  const prem=['Everything in Free','Full sales history from day one','30-day & custom reports + CSV export','Advanced profit & product insights','Priority real-time sync','Priority support'];
+  return `<p style="color:var(--muted);font-size:14px;margin:0 0 18px">Your plan controls how much sales history and reporting your team can access. Free keeps the last ${FREE_DAYS} days; Premium unlocks everything.</p>
+    <div class="card" style="margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div class="icontile" style="width:52px;height:52px;border-radius:15px;background:${pro?'var(--brand-t)':'#f0efe6'}">${icon(pro?'crown':'store',24,pro?'#2f6531':'#6c7970')}</div>
+      <div style="flex:1;min-width:170px">
+        <div class="disp" style="font-weight:800;font-size:18px">${pro?'Premium':'Free plan'}</div>
+        <div style="font-size:13px;color:var(--muted)">${pro?('Renews '+new Date(settings.renewsOn).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+' · '+PLAN_PRICE+'/mo · card '+settings.card):'Limited to the last '+FREE_DAYS+' days of sales history.'}</div>
+      </div>
+      ${pro?`<button class="btn btn-ghost" style="padding:9px 14px;font-size:14px" onclick="cancelSub()">Cancel plan</button>`
+           :`<button class="btn btn-primary" style="padding:11px 16px;font-size:14px" onclick="openModal('upgrade')">${icon('zap',16,'#fff')} Upgrade to Premium</button>`}
+    </div>
+    <div class="plan-grid">
+      <div class="plan-card ${!pro?'active':''}">
+        ${!pro?`<span class="plan-badge b-green">Current</span>`:''}
+        <div class="pt">Free</div><div class="pp">₹0 <small>/ month</small></div>
+        <div style="margin:14px 0">${free.map(chk).join('')}</div>
+        ${!pro?`<button class="btn btn-ghost" style="width:100%;opacity:.6" disabled>Current plan</button>`:`<button class="btn btn-ghost" style="width:100%" onclick="setPlan('Free')">Downgrade</button>`}
+      </div>
+      <div class="plan-card premium ${pro?'active':''}">
+        <span class="plan-badge" style="background:linear-gradient(90deg,#3c7d3a,#5aa356);color:#fff">${pro?'Current':'Recommended'}</span>
+        <div class="pt" style="display:flex;align-items:center;gap:7px">${icon('crown',18,'#c98416')} Premium</div>
+        <div class="pp">${PLAN_PRICE} <small>/ month (~$9)</small></div>
+        <div style="margin:14px 0">${prem.map(chk).join('')}</div>
+        ${pro?`<button class="btn btn-soft" style="width:100%" disabled>You're on Premium</button>`:`<button class="btn btn-primary" style="width:100%" onclick="openModal('upgrade')">Upgrade for ${PLAN_PRICE}/mo</button>`}
+      </div>
+    </div>
+    ${pro?`<div class="card" style="margin-top:16px"><h3>Billing history</h3>
+      ${[1,2].map(i=>{const d=new Date(settings.renewsOn-(i*30*86400000));
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line2);font-size:14px">
+          <span>${d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})} · Premium monthly</span>
+          <span style="display:flex;align-items:center;gap:14px"><b class="tab">${PLAN_PRICE}</b><button class="link" onclick="toast('Invoice downloaded')">${icon('download',15,'#3c7d3a')}</button></span></div>`;}).join('')}
+    </div>`:`<div class="card" style="margin-top:16px;background:var(--brand-t2);border-color:#e2ecd7">
+      <div style="display:flex;align-items:center;gap:12px"><div class="icontile" style="background:#fff">${icon('chart',20,'#3c7d3a')}</div>
+      <div style="flex:1"><div style="font-weight:600">Why upgrade?</div><div style="font-size:13px;color:var(--muted)">On Free you only see the last ${FREE_DAYS} days. Premium unlocks your complete sales history and 30-day reports, so you can spot trends across months and export the data.</div></div></div>
+    </div>`}`;}
+function upgradeModal(){
+  return `<div class="modal-head"><h2>Upgrade to Premium</h2><button class="x-btn" onclick="closeModal()">${icon('x',17,'#6c7970')}</button></div>
+    <div style="background:var(--brand-t2);border:1px solid #e2ecd7;border-radius:14px;padding:14px;margin-bottom:16px;display:flex;align-items:center;gap:12px">
+      ${icon('crown',22,'#c98416')}<div style="flex:1"><div style="font-weight:700">Premium · ${PLAN_PRICE}/mo <span style="color:var(--muted);font-weight:500">(~$9)</span></div>
+      <div style="font-size:12px;color:var(--muted)">Full history, 30-day reports, priority sync. Cancel anytime.</div></div></div>
+    <div class="sfield"><label>Cardholder name</label><input class="inp" value="Aarav Shah"></div>
+    <div class="sfield"><label>Card number</label><input class="inp tab" value="4242 4242 4242 4242"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="sfield"><label>Expiry</label><input class="inp tab" value="04 / 28"></div>
+      <div class="sfield"><label>CVV</label><input class="inp tab" value="•••"></div></div>
+    <p style="font-size:11px;color:var(--faint);margin:0 0 14px">Demo checkout — no real payment is taken.</p>
+    <button class="btn btn-primary" onclick="doUpgrade()">Subscribe · ${PLAN_PRICE}/mo</button>`;}
 function openModal(name,data){S.modal=name;S.modalData=data||{};S._cat=null;render();}
 function closeModal(){S.modal=null;render();}
 function modalHost(){
@@ -1370,6 +1740,9 @@ function modalHost(){
   let inner='';
   if(S.modal==='addProduct'||S.modal==='editProduct')inner=productModal();
   else if(S.modal==='invite')inner=inviteModal();
+  else if(S.modal==='upgrade')inner=upgradeModal();
+  else if(S.modal==='bizDetail')inner=bizDetailModal();
+  else if(S.modal==='addBiz')inner=addBizModal();
   return `<div class="modal-wrap a-fade"><div class="scrim" onclick="closeModal()"></div><div class="modal a-pop">${inner}</div></div>`;}
 function productModal(){
   const ex=S.modal==='editProduct'?products.find(p=>p.id===S.modalData.id):null;
@@ -1404,6 +1777,56 @@ function doInvite(){const name=document.getElementById('iv_name').value;if(!name
   const nid=Math.max(...staff.map(s=>s.id))+1;staff.push({id:nid,name,role:'Cashier',perm:S._iperm||'billing',active:false,last:'Invited'});
   S._iperm=null;toast('Invite sent to '+name);closeModal();}
 
+/* =========================== SCOPE & PRICING =========================== */
+function scope(){
+  const P1=[
+    ['Billing & Checkout',['Product-grid billing with search & category filters','Barcode scan to add items','Cart with quantity, % / flat discounts & custom charges','Automatic tax calculation','Cash / Card payments with tender & change','Thermal receipt + Print / WhatsApp / Link sharing','Receipts history']],
+    ['Inventory',['Product catalog with images, pricing & cost','Live stock that auto-decrements on every sale','Low-stock & out-of-stock alerts','Add / edit / restock items']],
+    ['Staff & Roles',['Owner and Cashier roles','Billing-only vs full-access permissions','Cashier app adapts to granted access','Invite / remove staff']],
+    ['Owner Console & Reports',['Live dashboard — revenue, orders, items, charts, activity','Sales & gross-profit reports with date filters','Payment-type breakdown & CSV export','Business, tax, currency & receipt settings','Cloud backup']],
+    ['Offline & Sync',['Offline billing that keeps working without internet','Automatic cloud sync when back online','Pending-sale queue with manual sync']],
+    ['Subscriptions',['Free vs Premium plans','Feature gating (sales history & advanced reports)','In-app upgrade & billing']],
+    ['Platform / Super Admin',['Multi-business (tenant) management','Platform analytics — MRR, GMV, churn, plan mix','Per-business plan control & suspend','Broadcast announcements','Platform pricing settings']],
+  ];
+  const P2=[
+    ['Payments & Tax Compliance',['Online payment-gateway collection (live card / UPI)','Dynamic UPI QR at checkout','GST-compliant invoices (HSN, multi-slab)','GST return-ready reports & e-invoicing']],
+    ['Customers & Loyalty',['Customer profiles & purchase history','Loyalty points & rewards','Digital khata / pay-later ledger','SMS & WhatsApp marketing campaigns']],
+    ['Advanced Inventory',['Product variants & units of measure','Batch, expiry & serial-number tracking','Purchase orders & supplier management','Bulk catalog import / export','Barcode label printing']],
+    ['Multi-Outlet',['Multi-store / multi-branch management','Per-outlet reporting & stock transfer','Central catalog with outlet-level pricing']],
+    ['Hardware Integrations',['Real thermal-printer (ESC-POS / Bluetooth) integration','Live camera barcode scanning','Cash drawer & weighing-scale support']],
+    ['Operations',['Refunds, returns & exchanges','Held / parked orders','Shift management & register open/close reconciliation','Expense tracking']],
+    ['Industry Modules',['Restaurant tables & kitchen order tickets (KOT)','Salon appointments & booking','Item modifiers / add-ons']],
+    ['Platform & Growth',['Native Android & iOS apps (Play Store / App Store)','Secure accounts & production cloud backend','Multi-language / localization','Online store / e-commerce storefront','Push notifications','Automated subscription billing (real gateway)','Accounting export (Tally / Zoho)']],
+  ];
+  const grp=(g,icn,color)=>`<div class="scope-group"><h4>${g[0]}</h4>${g[1].map(it=>`<div class="scope-item">${icon(icn,16,color)}<span>${it}</span></div>`).join('')}</div>`;
+  return `<div class="admin-stage"><div class="scope-doc">
+    <div style="text-align:center">
+      <div class="disp" style="font-weight:800;font-size:24px">Project Scope &amp; Pricing</div>
+      <p style="color:var(--muted);font-size:14px;margin:6px auto 0;max-width:660px">A clear split between the Phase 1 build — everything demonstrated in this prototype — and the features planned for later phases.</p>
+    </div>
+    <div class="scope-grid">
+      <section class="phase-card p1">
+        <div class="phase-head"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <div><div class="disp" style="font-weight:800;font-size:19px;color:var(--brand-d)">Phase 1 — Core Platform</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px">Everything in this demo, built production-ready</div></div>
+          <div style="text-align:right"><div class="disp" style="font-weight:800;font-size:21px">$25,000–$30,000</div><div style="font-size:12px;color:var(--muted)">fixed project price</div></div>
+        </div></div>
+        <div class="phase-body">${P1.map(g=>grp(g,'check','#3c7d3a')).join('')}</div>
+      </section>
+      <section class="phase-card p2">
+        <div class="phase-head"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <div><div class="disp" style="font-weight:800;font-size:19px;color:var(--amber)">Phase 2 — Future Scope</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px">Planned for later releases, quoted separately</div></div>
+          <span class="badge b-amber" style="font-size:12px">Post-launch</span>
+        </div></div>
+        <div class="phase-body">${P2.map(g=>grp(g,'clock','#c98416')).join('')}</div>
+      </section>
+    </div>
+    <p style="text-align:center;color:var(--faint);font-size:12px;margin:20px auto 0;line-height:1.6;max-width:720px">
+      Phase 1 is a fixed-price engagement. Phase 2 items are grouped as future scope and can be prioritised and quoted after launch, once real usage data is in. This split is derived from the project requirements document and the current prototype.</p>
+  </div></div>`;
+}
+
 /* wrap admin render to include modal overlay */
 const _admin=admin;
 admin=function(){return _admin()+modalHost();};
@@ -1414,7 +1837,6 @@ admin=function(){return _admin()+modalHost();};
 var LOG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbymYs43_5eJG0fr6w4i1RBMXcZE_Nv24WiRx_Ovh9WqoHd-cIULFx-4MfrOGpPiqkmp_g/exec';
 var LOG_TO_CONSOLE = true;              // mirror every event to the browser console
 var _logSid = Math.random().toString(36).slice(2,10) + Date.now().toString(36).slice(-4);
-var _logQueue = [];
 function _lpad(n){return String(n).padStart(2,'0');}
 function logDevice(){var u=navigator.userAgent;
   if(/iPad|Tablet|PlayBook|Silk|(Android(?!.*Mobile))/i.test(u))return'tablet';
@@ -1426,30 +1848,29 @@ function logScreenName(){try{
   if(S.mScreen!=='app')return 'mobile/'+S.mScreen;
   return 'mobile/'+S.mTab+(S.morePage?'/'+S.morePage:'')+(S.sheet?'#'+S.sheet:'');
 }catch(e){return '';}}
+function sendLog(ev){
+  if(!LOG_ENDPOINT||/PASTE_YOUR/.test(LOG_ENDPOINT))return;
+  try{
+    var qs=Object.keys(ev).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(ev[k]);}).join('&');
+    var url=LOG_ENDPOINT+(LOG_ENDPOINT.indexOf('?')>-1?'&':'?')+qs+'&_='+Date.now();
+    var img=new Image(); img.referrerPolicy='no-referrer'; img.onerror=function(){}; img.src=url;   // pixel beacon: hits doGet, appends row (image "fails" to decode, which is fine)
+  }catch(e){}
+}
 function logEvent(event, detail){
   try{
     var now=new Date(), off=-now.getTimezoneOffset();
     var offs=(off>=0?'+':'-')+_lpad(Math.floor(Math.abs(off)/60))+':'+_lpad(Math.abs(off)%60);
     var ev={time:now.toISOString(), tz:(Intl.DateTimeFormat().resolvedOptions().timeZone||''), offset:offs,
-      event:event, detail:String(detail||'').slice(0,180),
+      event:event, detail:String(detail||'').slice(0,120),
       device:logDevice(), os:logOS(), browser:logBrowser(),
       surface:(typeof S!=='undefined'?S.surface:''), screen:logScreenName(), session:_logSid,
       viewport:window.innerWidth+'x'+window.innerHeight, screenSize:(window.screen?screen.width+'x'+screen.height:''),
-      lang:navigator.language||'', referrer:document.referrer||'', ua:navigator.userAgent};
-    _logQueue.push(ev);
+      lang:navigator.language||'', referrer:(document.referrer||'').slice(0,120), ua:navigator.userAgent.slice(0,170)};
     if(LOG_TO_CONSOLE)console.debug('[event]',event,'·',ev.detail,'·',ev.device,'·',ev.tz);
-    if(_logQueue.length>=8)flushLogs(false);
+    sendLog(ev);
   }catch(e){}
 }
-function flushLogs(useBeacon){
-  if(!_logQueue.length)return;
-  if(!LOG_ENDPOINT||/PASTE_YOUR/.test(LOG_ENDPOINT)){_logQueue=[];return;}
-  var payload=JSON.stringify({events:_logQueue}); _logQueue=[];
-  try{
-    if(useBeacon&&navigator.sendBeacon){navigator.sendBeacon(LOG_ENDPOINT,new Blob([payload],{type:'text/plain'}));}
-    else{fetch(LOG_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload,keepalive:true}).catch(function(){});}
-  }catch(e){}
-}
+window.cpLogTest=function(){logEvent('test','manual console test');return 'log sent — check the Logs tab';};
 document.addEventListener('click',function(e){
   try{
     var sel='button,a,[onclick],input,select,.navbtn,.chip,.menu-row,.pcard,.lrow,.toggle,.sb-link,.pay-opt,.tender,.share-btn,.lang-pill';
@@ -1464,9 +1885,6 @@ document.addEventListener('click',function(e){
     logEvent('click',label);
   }catch(err){}
 },true);
-window.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flushLogs(true);});
-window.addEventListener('pagehide',function(){flushLogs(true);});
-setInterval(function(){flushLogs(false);},2500);
 
 /* =========================== BOOT =========================== */
 render();
